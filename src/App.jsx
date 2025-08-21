@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import "./App.css";
 
 //const targetDate = new Date("2025-11-22T12:30:00");
-const targetDate = new Date("2025-11-22T12:30:00+05:30");
+const targetDate = new Date("2025-11-23T12:30:00+05:30");
 
 function App() {
   const [timeLeft, setTimeLeft] = useState(getTimeRemaining());
