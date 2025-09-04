@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
-const App = () => {
+const Countdown = ({ targetDate, title, subtitle, styleType }) => {
   const calculateTimeLeft = () => {
-    const targetDate = new Date("2025-11-23T12:30:00");
     const now = new Date();
     const difference = targetDate - now;
 
@@ -26,12 +25,12 @@ const App = () => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [targetDate]);
 
   return (
-    <div className="app">
-      <h1 className="title">🎉 VISHAL WEDS KOMAL 💍</h1>
-      <h2 className="subtitle">विवाह मुहूर्त Tuk Tuk Tuk 🚗💨</h2>
+    <div className={`countdown-container ${styleType}`}>
+      <h1 className="title">{title}</h1>
+      {subtitle && <h2 className="subtitle">{subtitle}</h2>}
 
       <div className="countdown">
         <div className="time-box bounce">
@@ -51,8 +50,36 @@ const App = () => {
           <p>Seconds</p>
         </div>
       </div>
+    </div>
+  );
+};
 
-      <p className="footer">📅 Save the Date: 23rd Nov 2025, 12:30 PM</p>
+const App = () => {
+  return (
+    <div className="app">
+      {/* Wedding Countdown */}
+      <Countdown
+        targetDate={new Date("2025-11-23T12:30:00")}
+        title="🎉 VISHAL WEDS KOMAL 💍"
+        subtitle="विवाह मुहूर्त Tuk Tuk Tuk 🚗💨"
+        styleType="wedding"
+      />
+
+      {/* Bride & Groom Animation */}
+      <div className="wedding-stage">
+        <div className="groom">🤵‍♂️ 🌸</div>
+        <div className="bride">🌸 👰‍♀️</div>
+      </div>
+
+      {/* DJ Night Countdown */}
+      <Countdown
+        targetDate={new Date("2025-11-22T19:00:00")}
+        title="🎶 DJ NIGHT (बिलोरा) 🎉"
+        subtitle="Dance • Music • Masti 💃🕺"
+        styleType="dj-night"
+      />
+
+      <p className="footer">📅 Save the Date: 22nd & 23rd Nov 2025</p>
     </div>
   );
 };
