@@ -61,21 +61,23 @@ const App = () => {
       <Countdown
         targetDate={new Date("2025-11-23T12:30:00")}
         title="🎉 VISHAL WEDS KOMAL 💍"
-        subtitle="विवाह मुहूर्त Tuk Tuk Tuk 🚗💨"
+        subtitle="विवाह मुहूर्त 🚗💨"
         styleType="wedding"
       />
 
-      {/* Bride & Groom Animation */}
-      <div className="wedding-stage">
-        <div className="groom">🤵‍♂️ 🌸</div>
-        <div className="bride">🌸 👰‍♀️</div>
+      {/* Bride & Groom — Dancing Animation */}
+      <div className="wedding-stage dance">
+        <div className="dancefloor" />
+        <div className="character groom-dance" aria-label="Groom dancing">🤵‍♂️</div>
+        <div className="character bride-dance" aria-label="Bride dancing">👰‍♀️</div>
       </div>
+
 
       {/* DJ Night Countdown */}
       <Countdown
         targetDate={new Date("2025-11-22T19:00:00")}
-        title="🎶 DJ NIGHT (बिलोरा) 🎉"
-        subtitle="Dance • Music • Masti 💃🕺"
+        title="🎶 DJ NIGHT (बिलोरा) With 'MOHIT' 🎉"
+        subtitle="Dance • Music • Masti 🕺💃🕺💃🕺💃🕺"
         styleType="dj-night"
       />
 

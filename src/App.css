@@ -151,3 +151,127 @@
 }
 
 /* ========== FOOTER ========== */
+body {
+    margin: 0;
+    display: block!important; 
+    place-items: center;
+    /* min-width: 320px; */
+    min-height: 100vh;
+}
+
+/* ---------- Wedding Stage: Dance Mode ---------- */
+.wedding-stage.dance {
+  position: relative;
+  margin: 40px auto 0;
+  width: min(820px, 92vw);
+  height: 240px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: visible;
+}
+
+/* Dancefloor: subtle disco grid */
+.dancefloor {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 90px;
+  border-radius: 16px;
+  background:
+    linear-gradient(transparent 50%, rgba(0,0,0,0.08)),
+    repeating-linear-gradient(90deg, #ffd1e1 0 24px, #ffe8f1 24px 48px),
+    repeating-linear-gradient(0deg,  #fff3f8 0 24px, #ffe0ef 24px 48px);
+  box-shadow: 0 10px 30px rgba(233, 30, 99, 0.25);
+  animation: floorGlow 3s ease-in-out infinite;
+}
+
+@keyframes floorGlow {
+  0%, 100% { filter: brightness(1); }
+  50%      { filter: brightness(1.15); }
+}
+
+/* Characters */
+.character {
+  position: relative;
+  font-size: clamp(48px, 7vw, 82px);
+  line-height: 1;
+  user-select: none;
+  transform-origin: 50% 100%;
+  /* little shadow for depth */
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
+}
+
+/* Position them with a gap */
+.groom-dance { margin-right: clamp(24px, 6vw, 60px); }
+.bride-dance { margin-left:  clamp(24px, 6vw, 60px); }
+
+/* Groom: bouncy step + shoulder sway */
+.groom-dance {
+  animation:
+    step-left-right 1.2s ease-in-out infinite,
+    hop 0.8s ease-in-out infinite;
+}
+
+/* Bride: mirrored step + graceful spin every few bars */
+.bride-dance {
+  animation:
+    step-right-left 1.2s ease-in-out infinite,
+    hop 0.8s ease-in-out infinite,
+    twirl 6s ease-in-out infinite;
+  animation-delay: 0s, 0.2s, 0.5s; /* slight desync for natural feel */
+}
+
+/* --- Dancing keyframes --- */
+@keyframes step-left-right {
+  0%   { transform: translateX(0)   rotate(0deg); }
+  25%  { transform: translateX(-10px) rotate(-3deg); }
+  50%  { transform: translateX(0)   rotate(0deg); }
+  75%  { transform: translateX(10px)  rotate(3deg); }
+  100% { transform: translateX(0)   rotate(0deg); }
+}
+
+@keyframes step-right-left {
+  0%   { transform: translateX(0)   rotate(0deg); }
+  25%  { transform: translateX(10px)  rotate(3deg); }
+  50%  { transform: translateX(0)   rotate(0deg); }
+  75%  { transform: translateX(-10px) rotate(-3deg); }
+  100% { transform: translateX(0)   rotate(0deg); }
+}
+
+@keyframes hop {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-6px) scale(1.02); }
+}
+
+/* A gentle twirl that starts/ends neutral so it loops cleanly */
+@keyframes twirl {
+  0%   { transform: rotate(0deg)    scale(1); }
+  10%  { transform: rotate(6deg)    scale(1.03); }
+  20%  { transform: rotate(12deg)   scale(1.05); }
+  30%  { transform: rotate(6deg)    scale(1.03); }
+  40%  { transform: rotate(0deg)    scale(1); }
+  100% { transform: rotate(0deg)    scale(1); }
+}
+
+/* Optional: tiny floating hearts for extra cuteness */
+.wedding-stage.dance::before,
+.wedding-stage.dance::after {
+  content: "💖";
+  position: absolute;
+  bottom: 90px;
+  font-size: clamp(18px, 3vw, 28px);
+  opacity: 0.9;
+  animation: floatUp 3.2s linear infinite;
+}
+.wedding-stage.dance::after {
+  content: "💞";
+  left: auto;
+  right: 12%;
+  animation-duration: 2.8s;
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(0) translateX(-12px); opacity: 0.0; }
+  10%  { opacity: 1; }
+  100% { transform: translateY(-140px) translateX(12px); opacity: 0; }
+}
